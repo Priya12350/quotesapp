@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial scale =1.0" />
+        <title>Quote Gen</title>
+
+  </head>
+  <body>
+    <h1>simple quote gen</h1>
+    <div id="quotes"></div>
+    <div id="author"></div>
+    <button id="newQ">new Quotes</button>
+    <script>
+      const quotes = document.getElementById("quotes");
+      const author = document.getElementById("author");
+      const newQ = document.getElementById("newQ");
+
+      let realData="";
+
+      const getNewQuotes = () =>{
+        let rnum=math.floor(math.random() * 10);
+        quotes.innerText = ${realData[rnum].text};
+        author.innerText = ${realData[rnum].author};
+      };
+
+
+
+
+
+
+      const getQuotes = async () => {
+        const api="https://type.fit/api/quotes";
+        try{
+          let data = await fetch(api);
+          let realData = data.json();
+          console.log(realData[10].text);
+          console.log(realData[10].author);
+          getNewQuotes();
+        }catch (errror){}
+      };
+      newQ.addEventListener("click",getNewQuotes);
+      getQuotes();
+      </script>
+    
+  
+  </body>
+</html>
